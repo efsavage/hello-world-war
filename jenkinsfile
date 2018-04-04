@@ -1,0 +1,11 @@
+pipeline{
+  agent any
+  
+  stages{
+     stage("build") {
+       steps {
+        sh 'mvn -f buid.xml -v'
+       }
+     }
+   }
+}
