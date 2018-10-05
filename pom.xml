@@ -16,7 +16,7 @@
   </dependency>
 </dependencies>
 	
-ption>Simplest possible Java Webapp</description>
+<description>Simplest possible Java Webapp</description>
 
 	<build>
 		<plugins>
