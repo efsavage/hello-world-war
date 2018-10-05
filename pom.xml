@@ -7,14 +7,15 @@
 	<packaging>war</packaging>
 	<name>Hello World Web Application Repository</name>
 	
-	
+<dependencies>
 	<!-- https://mvnrepository.com/artifact/org.wildfly.plugins/wildfly-maven-plugin -->
-<dependency>
+  <dependency>
     <groupId>org.wildfly.plugins</groupId>
     <artifactId>wildfly-maven-plugin</artifactId>
     <version>1.2.2.Final</version>
-</dependency>
-
+  </dependency>
+</dependencies>
+	
 ption>Simplest possible Java Webapp</description>
 
 	<build>
