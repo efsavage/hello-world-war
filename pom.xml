@@ -22,6 +22,11 @@
 <description>Simplest possible Java Webapp</description>
 
 	<build>
+		<resources>
+                  <resource>
+                    <directory>var/lib/jenkins/workspace/Wildfly/src/main/webapp</directory>
+                  </resource>
+                </resources>
 		<plugins>
 			<plugin>
 				<groupId>org.mortbay.jetty</groupId>
