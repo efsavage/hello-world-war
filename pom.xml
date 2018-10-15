@@ -24,7 +24,7 @@
 	<build>
 		<resources>
                   <resource>
-                    <directory>var/lib/jenkins/workspace/Wildfly/src/main/webapp</directory>
+                    <directory>src/main/webapp</directory>
                   </resource>
                 </resources>
 		<plugins>
