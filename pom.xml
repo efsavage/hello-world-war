@@ -6,6 +6,9 @@
 	<version>1.0.0</version>
 	<packaging>war</packaging>
 	<name>Hello World Web Application Repository</name>
+	  <properties>
+             <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+          </properties>
 	
 <dependencies>
 	<!-- https://mvnrepository.com/artifact/org.wildfly.plugins/wildfly-maven-plugin -->
