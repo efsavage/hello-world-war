@@ -1,9 +1,9 @@
 <html>
 <head>
-<title>Hello World!</title>
+<title>Hello Pi!</title>
 </head>
 <body>
-	<h1>Hello World!</h1>
+	<h1>Hello I edit jenkins configuration for automated deployment if will be any changes in "index.jsp" file!!!</h1>
 	<p>
 		It is now
 		<%= new java.util.Date() %></p>

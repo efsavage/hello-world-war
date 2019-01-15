@@ -6,9 +6,27 @@
 	<version>1.0.0</version>
 	<packaging>war</packaging>
 	<name>Hello World Web Application Repository</name>
-	<description>Simplest possible Java Webapp</description>
+	  <properties>
+             <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+          </properties>
+	
+<dependencies>
+	<!-- https://mvnrepository.com/artifact/org.wildfly.plugins/wildfly-maven-plugin -->
+  <dependency>
+    <groupId>org.wildfly.plugins</groupId>
+    <artifactId>wildfly-maven-plugin</artifactId>
+    <version>1.2.2.Final</version>
+  </dependency>
+</dependencies>
+	
+<description>Simplest possible Java Webapp</description>
 
 	<build>
+		<resources>
+                  <resource>
+                    <directory>src/main/webapp</directory>
+                  </resource>
+                </resources>
 		<plugins>
 			<plugin>
 				<groupId>org.mortbay.jetty</groupId>
@@ -21,8 +39,20 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>
-				<version>2.1.1</version>
+				<version>3.2.2</version>
 			</plugin>
+			<plugin>
+                                <groupId>org.wildfly.plugins</groupId>
+                                <artifactId>wildfly-maven-plugin</artifactId>
+				<version>1.2.2.Final</version>
+                                <configuration>
+                                     <hostname>${wildfly-hostname}</hostname>
+                                     <port>${wildfly-port}</port>
+                                     <username>${wildfly-username}</username>
+                                     <password>${wildfly-password}</password>
+                               	     <name>${wildfly-name}</name>
+                                </configuration>
+                       </plugin>
 		</plugins>
 	</build>
 
