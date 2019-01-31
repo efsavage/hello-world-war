@@ -8,7 +8,7 @@ node {
     sh "mvn clean package"
    }
 
-   stage('Results') {
+   stage('Saving Results') {
     archive 'target/*.jar'
    }
 

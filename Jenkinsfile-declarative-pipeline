@@ -16,7 +16,7 @@ pipeline {
       }
     }
 
-    stage('Results') {
+    stage('Saving Results') {
       steps {
         archiveArtifacts 'target/*.war'
       }
