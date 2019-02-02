@@ -11,6 +11,6 @@
 		You are coming from 
 		<%= request.getRemoteAddr()  %></p>
 	<p>
-		Bye suckers!!! </p>
+		Bye gentle sir!!! </p>
 
 </body>
