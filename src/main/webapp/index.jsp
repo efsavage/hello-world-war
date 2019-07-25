@@ -6,9 +6,9 @@
 		<br>
 		<h1>mohan creat thist</h1>
 		<br>
-		<h1>Hello Mounika</h1>
+		<h1>Hello Sameer</h1>
 		<br>
-		<h1>Hello Mouni</h1>
+		<h1>Hello Pradeep</h1>
 </head>
 <body>
 	<h1>Hello World!</h1>
