@@ -1,7 +1,5 @@
 parameter:
   appname: helloworld
-  repo: https://github.com/rakesh635/hello-world-war.git
-  branch: master
   deployment:
     strategy: bluegreen
     # greenblue , canary
