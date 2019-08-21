@@ -1,3 +1,4 @@
 parameter:
   appname: helloworld
-  deployment: canary
+  deployment:
+    strategy: canary
