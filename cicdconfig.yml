@@ -1,0 +1,3 @@
+parameter:
+  appname: helloworld
+  deployment: canary
