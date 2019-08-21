@@ -3,7 +3,7 @@
 <title>Hello World!</title>
 </head>
 <body>
-	<h1>Hello World! - Canary version : 2</h1>
+	<h1>Hello World! - with green blue deployment</h1>
 	<p>
 		It is now
 		<%= new java.util.Date() %></p>
