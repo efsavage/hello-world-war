@@ -2,3 +2,4 @@ parameter:
   appname: helloworld
   deployment:
     strategy: canary
+    # greenblue , canary
