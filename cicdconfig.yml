@@ -1,5 +1,5 @@
 parameter:
   appname: helloworld
   deployment:
-    strategy: bluegreen
+    strategy: canary
     # bluegreen , canary
