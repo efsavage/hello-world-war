@@ -3,7 +3,7 @@
 <title>Hello World!</title>
 </head>
 <body>
-	<h1>Hello World! - Blue green</h1>
+	<h1>Hello World! - Canary</h1>
 	<p>
 		It is now
 		<%= new java.util.Date() %></p>
