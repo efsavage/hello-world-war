@@ -29,7 +29,7 @@
   <!-- Navigation -->
   <nav class="navbar navbar-light bg-light static-top">
     <div class="container">
-      <a class="navbar-brand" href="#">Start Bootstrap - bluegreen</a>
+      <a class="navbar-brand" href="#">Start Bootstrap - canary</a>
       <a class="btn btn-primary" href="#">Sign In</a>
     </div>
   </nav>
