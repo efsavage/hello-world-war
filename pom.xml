@@ -8,8 +8,15 @@
 	<distributionManagement>
 <repository>
 <id>nexus</id>
-<name>maven-central</name>
-<url>http://54.203.28.185:8081/repository/maven-central/</url>
+<name>maven-releases</name>
+<url>http://localhost:8081/repository/maven-releases/</url>
+</repository>
+<snapshotRepository>
+<id>nexus</id>
+<name>maven-snapshots</name>
+<url>http://localhost:8081/repository/maven-snapshots/</url>
+</snapshotRepository>
+</distributionManagement>
 </repository>
 </distributionManagement>
 	<name>Hello World Web Application Repository</name>
