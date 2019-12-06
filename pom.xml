@@ -5,6 +5,13 @@
 	<artifactId>hello-world-war</artifactId>
 	<version>1.0.0</version>
 	<packaging>war</packaging>
+	<distributionManagement>
+<repository>
+<id>nexus</id>
+<name>maven-central</name>
+<url>http://54.203.28.185:8081/repository/maven-central/</url>
+</repository>
+</distributionManagement>
 	<name>Hello World Web Application Repository</name>
 	<description>Simplest possible Java Webapp</description>
 
@@ -25,11 +32,4 @@
 			</plugin>
 		</plugins>
 	</build>
-<distributionManagement>
-<repository>
-<id>nexus</id>
-<name>maven-central</name>
-<url>http://54.203.28.185:8081/repository/maven-central/</url>
-</repository>
-</distributionManagement>
 </project>
