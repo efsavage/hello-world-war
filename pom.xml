@@ -28,7 +28,7 @@
 	<distributionManagement>
 <repository>
 <id>nexus</id>
-<name>maven-releases</name>
+<name>maven-central</name>
 <url>http://localhost:8081/repository/maven-releases/</url>
 </repository>
 <snapshotRepository>
