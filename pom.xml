@@ -25,10 +25,10 @@
 			</plugin>
 		</plugins>
 	</build>
-	<distributionManagement>
+	<d<distributionManagement>
 <repository>
 <id>nexus</id>
-<name>maven-central</name>
+<name>maven-releases</name>
 <url>http://localhost:8081/repository/maven-releases/</url>
 </repository>
 <snapshotRepository>
