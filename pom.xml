@@ -28,8 +28,8 @@
 	<distributionManagement>
         <repository>
         <id>nexus</id>
-        <name>maven-central</name>
-        <url>http://34.215.26.173:8081/repository/maven-central/</url>
+        <name>maven-mounika</name>
+        <url>http://34.215.26.173:8081/repository/maven-mounika/</url>
         </repository>
         <snapshotRepository>
         <id>nexus</id>
