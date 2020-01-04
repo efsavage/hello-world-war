@@ -25,16 +25,4 @@
 			</plugin>
 		</plugins>
 	</build>
-	<distributionManagement>
-        <repository>
-        <id>nexus</id>
-        <name>mohan</name>
-        <url>http://54.203.227.217:8081/repository/mohan/</url>
-        </repository>
-        <snapshotRepository>
-        <id>nexus</id>
-        <name>maven-snapshots</name>
-        <url>http://54.203.227.217:8081/repository/maven-snapshots/</url>
-        </snapshotRepository>
-        </distributionManagement>
-</project>
+	</project>
