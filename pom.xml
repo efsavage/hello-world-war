@@ -29,12 +29,12 @@
         <repository>
         <id>nexus</id>
         <name>mohan</name>
-        <url>http://54.203.227.217:8081/repository/mohan/</url>
+        <url>http://35.154.75.177:8081/repository/mohan/</url>
         </repository>
         <snapshotRepository>
         <id>nexus</id>
         <name>maven-snapshots</name>
-        <url>http://54.203.227.217:8081/repository/maven-snapshots/</url>
+        <url>http://35.154.75.177:8081/repository/maven-snapshots/</url>
         </snapshotRepository>
         </distributionManagement>
 	</project>
