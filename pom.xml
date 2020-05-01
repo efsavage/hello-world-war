@@ -28,13 +28,13 @@
 	<distributionManagement>
         <repository>
         <id>nexus</id>
-        <name>mohan</name>
-        <url>http://35.154.75.177:8081/repository/mohan/</url>
+        <name>sameer</name>
+        <url>http://ec2-3-135-201-149.us-east-2.compute.amazonaws.com:8081/repository/sameer/</url>
         </repository>
         <snapshotRepository>
         <id>nexus</id>
         <name>maven-snapshots</name>
-        <url>http://35.154.75.177:8081/repository/maven-snapshots/</url>
+        <url>http://ec2-3-135-201-149.us-east-2.compute.amazonaws.com:8081/repository/maven-snapshots/</url>
         </snapshotRepository>
         </distributionManagement>
 	</project>
