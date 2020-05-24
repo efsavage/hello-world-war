@@ -16,25 +16,25 @@ pipeline {
             }
         }
         stage ('nexus_upload') {
-			script {
-				def pomver = readMavenPom file: 'pom.xml'
-            steps {
-                nexusArtifactUploader artifacts: 
-                [
-                    [
-                        artifactId: 'hello-world-war',
-                        classifier: '', 
-                        file: 'target/hello-world-war-${pomver.version}.war', 
-                        type: 'war'
-                    ]
-                ], 
-                credentialsId: 'Nexus3', 
-                groupId: 'com.efsavage', 
-                nexusUrl: '52.27.177.19:8081', 
-                nexusVersion: 'nexus3', 
-                protocol: 'http', 
-                repository: 'mouni', 
-                version: '${pomver.version}'
+			steps {
+				script {
+					def pomver = readMavenPom file: 'pom.xml'
+					nexusArtifactUploader artifacts: 
+					[
+						[
+							artifactId: 'hello-world-war',
+							classifier: '', 
+							file: 'target/hello-world-war-${pomver.version}.war', 
+							type: 'war'
+						]
+					], 
+					credentialsId: 'Nexus3', 
+					groupId: 'com.efsavage', 
+					nexusUrl: '52.27.177.19:8081', 
+					nexusVersion: 'nexus3', 
+					protocol: 'http', 
+					repository: 'mouni', 
+					version: '${pomver.version}'
 				}
 			}			
         }
