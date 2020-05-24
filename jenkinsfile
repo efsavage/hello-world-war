@@ -16,7 +16,8 @@ pipeline {
             }
         }
         stage ('nexus_upload') {
-			def pomver = readMavenPom file: 'pom.xml'
+			scripts {
+				def pomver = readMavenPom file: 'pom.xml'
             steps {
                 nexusArtifactUploader artifacts: 
                 [
@@ -34,7 +35,8 @@ pipeline {
                 protocol: 'http', 
                 repository: 'mouni', 
                 version: '${pomver.version}'
-            }
+				}
+			}			
         }
     }
 }
