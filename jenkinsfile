@@ -1,42 +1,40 @@
 pipeline {
-    agent any
-    tools {
-    maven 'maven'
-    }
-
-    stages {
-        stage ('git_checkout') {
-            steps {
-                git credentialsId: '72faf694-aae2-4144-bc68-d28e562e19f4', url: 'https://github.com/mohancggrl/hello-world-war.git'
-            }
-        }
-        stage ('Build') {
-            steps {
-                sh 'mvn clean package'
-            }
-        }
-        stage ('nexus_upload') {
+	agent any
+	tools {
+		maven 'maven'
+	}
+	stages {
+		stage ('Git-Fetch') {
+			steps {
+				git 'git@github.com:mohancggrl/hello-world-war.git'
+			}
+		}
+		stage ('build') {
+			steps {
+				sh 'mvn clean package'
+			}
+		}
+		stage ('upload_to Nexus') {
 			steps {
 				script {
-					def pomver = readMavenPom file: 'pom.xml'
-					nexusArtifactUploader artifacts: 
+					def pom = readMavenPom file: 'pom.xml'
+					nexusArtifactUploader artifacts: [
 					[
-						[
-							artifactId: 'hello-world-war',
-							classifier: '', 
-							file: 'target/hello-world-war-${pomver.version}.war', 
-							type: 'war'
-						]
-					], 
-					credentialsId: 'Nexus3', 
-					groupId: 'com.efsavage', 
-					nexusUrl: '52.27.177.19:8081', 
-					nexusVersion: 'nexus3', 
-					protocol: 'http', 
-					repository: 'mouni', 
-					version: '${pomver.version}'
+						artifactId: 'hello-world-war',
+						classifier: '', 
+						file: "target/hello-world-war-${pom.version}.war", 
+						type: 'war'
+					]
+				], 
+				credentialsId: 'Nexus3', 
+				groupId: 'com.efsavage', 
+				nexusUrl: '172.31.8.254:8081', 
+				nexusVersion: 'nexus3', 
+				protocol: 'http', 
+				repository: 'mouni', 
+				version: "${pom.version}"
 				}
-			}			
-        }
-    }
+			}
+		}
+	}
 }
