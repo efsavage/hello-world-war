@@ -16,13 +16,14 @@ pipeline {
             }
         }
         stage ('nexus_upload') {
+			def pomver = readMavenPom file: 'pom.xml'
             steps {
                 nexusArtifactUploader artifacts: 
                 [
                     [
                         artifactId: 'hello-world-war',
                         classifier: '', 
-                        file: 'target/hello-world-war-2.0.0.war', 
+                        file: 'target/hello-world-war-${pomver.version}.war', 
                         type: 'war'
                     ]
                 ], 
@@ -32,7 +33,7 @@ pipeline {
                 nexusVersion: 'nexus3', 
                 protocol: 'http', 
                 repository: 'mouni', 
-                version: '2.0.0'
+                version: '${pomver.version}'
             }
         }
     }
