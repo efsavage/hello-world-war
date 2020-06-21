@@ -10,7 +10,7 @@ pipeline {
   stages {
     stage ('git_checkout') {
 	  steps {
-	   git branch: 'dev', url: 'https://github.com/mohancggrl/hello-world-war.git'
+	   git 'https://github.com/mohancggrl/hello-world-war.git'
 	  }
 	}
 	stage ('mvn_build') {
