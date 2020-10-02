@@ -8,6 +8,7 @@
 		It is now
 		<%= new java.util.Date() %></p>
 	<p>
-		You are coming from 
+		You are ipaddress is
 		<%= request.getRemoteAddr()  %></p>
 </body>
+</html>
