@@ -32,9 +32,9 @@
         <url>http://3.85.13.168:8081/repository/hello/</url>
         </repository>
         <snapshotRepository>
-        <id>nexus1</id>
-        <name>maven-snapshots</name>
-        <url>http://3.85.13.168:8081/repository/maven-snapshots/</url>
+        <id>snap</id>
+        <name>snap</name>
+        <url>http://3.85.13.168:8081/repository/hello-snapshot/</url>
         </snapshotRepository>
         </distributionManagement>
 	</project>
