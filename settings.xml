@@ -115,13 +115,13 @@ under the License.
      |
      | NOTE: You should either specify username/password OR privateKey/passphrase, since these pairings are
      |       used together.
-     | -->
+     |
     <server>
-      <id>nexus</id>
-      <username>${nexususer}</username>
-      <password>${nexuspassword}</password>
+      <id>deploymentRepo</id>
+      <username>repouser</username>
+      <password>repopwd</password>
     </server>
-
+    -->
 
     <!-- Another sample, using keys to authenticate.
     <server>
@@ -163,6 +163,7 @@ under the License.
       <url>http://0.0.0.0/</url>
       <blocked>true</blocked>
     </mirror>
+  </mirrors>
 
   <!-- profiles
    | This is a list of profiles which can be activated in a variety of ways, and which can modify
