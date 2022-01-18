@@ -5,9 +5,9 @@
 <body>
 	<h1>Hello World!</h1>
 	<p>
-		It is now
+		Today is
 		<%= new java.util.Date() %></p>
 	<p>
-		You are coming from 
-		<%= request.getRemoteAddr()  %></p>
+		welcome to devops website 
+		</p>
 </body>
