@@ -8,6 +8,6 @@
 		Today is
 		<%= new java.util.Date() %></p>
 	<p>
-		welcome to devops website 
+		welcome to devops class
 		</p>
 </body>
