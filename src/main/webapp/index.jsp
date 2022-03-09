@@ -2,13 +2,9 @@
 <head>
 <title>Hello World!</title>
 	<br>
-	<h1>MOHAN very good boy<h1>
+	<h1>Thi is my test page<h1>
 		<br>
-		<h1>mohan creat thist</h1>
-		<br>
-		<h1>Sameer pady is hero for our gang</h1>
-		<br>
-		<h1>this is my pipeline</h1>
+
 </head>
 <body>
 	<h1>Hello World!</h1>
