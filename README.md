@@ -5,3 +5,4 @@ This is the simplest possible Java webapp for testing servlet container deployme
 command to build : mvn clean package
 sudo apt install maven
 
+install maven
