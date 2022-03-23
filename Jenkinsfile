@@ -7,9 +7,7 @@ pipeline {
             }
         }
 stage('build') { 
-            steps {
-	      sh "apt-get update"
-	      sh "apt install default-jre"	
+            steps {	
               sh "mvn clean package"
             }
         }  
