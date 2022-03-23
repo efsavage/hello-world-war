@@ -7,7 +7,8 @@ pipeline {
             }
         }
 stage('build') { 
-            steps {	
+            steps {
+		    sh " apt install maven -y "
               sh "mvn clean package"
             }
         }  
