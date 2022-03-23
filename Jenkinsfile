@@ -13,7 +13,7 @@ agent any
     }
     stage ("Deploy") {
       steps {
-      sh "sudo cp -r /home/slave-1/jenkins/workspace/Jenkin_pipeline/target/* /opt/apache-tomcat-9.0.60/webapps/"
+      sh "sudo cp -r /home/slave-1/jenkins/workspace/Jenkin_pipeline/target/hello-world-war-1.0.0.war /opt/apache-tomcat-9.0.60/webapps/"
       }
     }
     
