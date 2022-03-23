@@ -13,7 +13,7 @@ agent any
     }
     stage ("Deploy") {
       steps {
-      sh "sudo cp /home/slave-1/jenkins/workspace/Jenkin_pipeline/target/* /opt/apache-tomcat-9.0.60/webapps/"
+      sh "sudo cp -r /home/slave-1/jenkins/workspace/Jenkin_pipeline/target/* /opt/apache-tomcat-9.0.60/webapps/"
       }
     }
     
