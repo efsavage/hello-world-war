@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('checkout') { 
             steps {
-		sh " rm -rf /home/slave2/workspace/job_pip"
+		sh " git pull "
               sh "git clone https://github.com/Lohras/hello-world-war.git"
             }
         }
