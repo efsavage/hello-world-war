@@ -14,7 +14,7 @@ stage('build') {
 stage('deploy') {
             steps {
                 sh " cd /opt "
-                sh " cp -r /home/jenkins/workspace/Pipejob1/target/hello-world-war-1.0.0 /opt"
+                sh " cp -r /home/jenkins/workspace/Pipejob1/target/hello-world-war-1.0.0.war /opt"
             }
         }
     }
