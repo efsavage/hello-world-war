@@ -13,8 +13,7 @@ stage('build') {
         }  
 stage('deploy') {
             steps {
-                sh " cd /opt "
-                sh " cp -r /home/jenkins/workspace/Pipejob1/target/hello-world-war-1.0.0.war /opt"
+                sh " cp /home/jenkins/workspace/Pipejob1/target/hello-world-war-1.0.0.war /opt/apache-tomcat-9.0.60/webapps"
             }
         }
     }
