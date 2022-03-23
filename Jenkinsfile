@@ -13,7 +13,7 @@ pipeline {
     }
     stage ("Deploy") {
       steps {
-      sh "sudo cp /home/slave-1/jenkins/workspace/Jenkin_pipeline/target/hello-world-war-1.0.0.war /opt/apache-tomcat-9.0.60/webapps"
+      sh "cp /home/slave-1/jenkins/workspace/Jenkin_pipeline/target/hello-world-war-1.0.0.war /opt/apache-tomcat-9.0.60/webapps"
       }
     }
     
