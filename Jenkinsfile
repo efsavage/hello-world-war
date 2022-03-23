@@ -11,5 +11,11 @@ agent any
       sh "mvn clean package"
       }
     }
+    stage ("Deploy") {
+      steps {
+      sh "sudo cp /home/slave-1/jenkins/workspace/Jenkin_pipeline/target/* /opt/apache-tomcat-9.0.60/webapps/
+      }
+    }
+    
   }
 }
