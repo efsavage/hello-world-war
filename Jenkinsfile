@@ -1,21 +1,14 @@
-pipeline {
- agent { label 'java' }
-  stages {
-    stage ("Checkout") {
-      steps {
-      sh "git clone https://github.com/Dileep-HL/hello-world-war"
+pipeline
+agent any
+stage('run-parallel-branches') {
+  steps {
+    parallel(
+      a: {
+        echo "This is branch a"
+      },
+      b: {
+        echo "This is branch b"
       }
-    }
-    stage ("Build") {
-      steps {
-      sh "mvn clean package"
-      }
-    }
-    stage ("Deploy") {
-      steps {
-      sh "sudo cp /home/slave-1/jenkins/workspace/Jenkin_pipeline/target/hello-world-war-1.0.0.war /opt/apache-tomcat-9.0.60/webapps"
-      }
-    }
-    
+    )
   }
 }
