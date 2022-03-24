@@ -3,11 +3,11 @@ agent any
 stage('run-parallel-branches') {
   steps {
     parallel(
-      a: {
-        echo "This is branch a"
+      1: {
+        echo "This is branch 1 code exicuting"
       },
-      b: {
-        echo "This is branch b"
+      2: {
+        echo "This is branch 1 code exicuting"
       }
     )
   }
