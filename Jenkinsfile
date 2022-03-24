@@ -1,14 +1,25 @@
-pipeline
- agent { label 'java' }
-stage('run-parallel-branches') {
-  steps {
-    parallel(
-      1: {
-        echo "This is branch 1 code exicuting"
-      },
-      2: {
-        echo "This is branch 1 code exicuting"
-      }
-    )
-  }
+pipeline {
+    agent none
+    stages {
+        stage('Run Tests') {
+            parallel {
+                stage('Parellel Test') {
+                    agent {
+                        label "java"
+                    }
+                    steps {
+                        echo "Statement1: Testing Multi pipeline parelele exicution"
+                    }
+                  }
+                stage('Test On Linux') {
+                    agent {
+                        label "java"
+                    }
+                    steps {
+                        echo "Statement2: Testing Multi pipeline parelele exicution"
+                    }
+                   }
+            }
+        }
+    }
 }
