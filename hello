@@ -1,0 +1,13 @@
+pipeline {
+    agent any
+    stages {
+        stage('hello') { 
+            steps {
+              sh "git clone https://github.com/soumyashree28/hello-world-war"
+            }
+        }
+stage('build') { 
+            steps {
+              sh "mvn clean package"
+            }
+        }  
