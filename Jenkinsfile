@@ -1,5 +1,5 @@
 pipeline
-agent any
+agent { label 'java' }
 stage('run-parallel-branches') {
   steps {
     parallel(
