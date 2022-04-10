@@ -26,7 +26,7 @@ pipeline{
                   steps{
                         sh "docker login -u arunhs07 -p 9845682619@Aru"
                         sh "docker pull arunhs07/arunnewfile:1.0"
-                        //sh "docker rm -f trail1"
+                        sh "docker rm -f trail1"
                         sh "docker run -d -p 8085:8080 --name trail1 arunhs07/arunnewfile:1.0"
                   }
             }
