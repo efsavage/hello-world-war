@@ -17,7 +17,7 @@ pipeline{
       }
        stage('publish'){
                   steps{
-                        sh "docker login -u lohith2022.jfrog.io -p Lohith@1994"
+                        sh "docker login -u lohith2022.jfrog.io --p Lohith@1994"
                         sh "docker push lohith2022.jfrog.io/docker:1.0"
                   }
             }
