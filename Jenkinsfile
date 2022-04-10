@@ -12,22 +12,22 @@ pipeline{
       sh "pwd"
       sh "ls"
       sh "cd hello-world-war"
-      sh "docker build -t lohith1994/dockerrepo/dock:1.0 ."
+      sh "docker build -t lohith1994/dockerrepo:1.0 ."
       }
       }
        stage('publish'){
                   steps{
                         sh "docker login -u lohith1994 -p Lohith@1994"
-                        sh "docker push lohith1994/dockerrepo/dock:1.0"
+                        sh "docker push lohith1994/dockerrepo:1.0"
                   }
             }
             stage('deploy'){
                   agent { label 'slave2' }
                   steps{
                         //sh "docker login -u lohith1994 -p Lohith@1994"
-                        sh "docker pull lohith1994/dockerrepo/dock:1.0"
+                        sh "docker pull lohith1994/dockerrepo:1.0"
                         //sh "docker rm -f docker1"
-                        sh "docker run -d -p 8040:8080 --name docker1 lohith1994/dockerrepo/dock:1.0"
+                        sh "docker run -d -p 8040:8080 --name docker1 lohith1994/dockerrepo:1.0"
                   }
             }
       }
