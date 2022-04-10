@@ -1,20 +1,34 @@
-pipeline {
-    agent { label 'last1' }
-    stages {
-        stage('checkout') { 
-            steps {
-              sh "git pull https://github.com/Lohras/hello-world-war.git"
+pipeline{
+      agent { label 'last1' }
+      stages{
+      stage('check out'){
+                  steps{
+                  sh "rm -rf hello-world-war"
+                  sh "git clone "
+                  }
+                  }
+      stage('build'){
+      steps{
+      sh "pwd"
+      sh "ls"
+      sh "cd hello-world-war"
+      sh "docker build -t lohith2022.jfrog.io/docker:1.0 ."
+      }
+      }
+       stage('publish'){
+                  steps{
+                        sh "docker login -u lohith2022 -p Lohith@1994"
+                        sh "docker push lohith2022.jfrog.io/docker:1.0"
+                  }
             }
-        }
-        stage('build') { 
-             steps {
-              sh "mvn clean package"
+            stage('deploy'){
+                  agent { label 'slave2' }
+                  steps{
+                        sh "docker login -u lohith2022 -p Lohith@1994"
+                        sh "docker pull lohith2022.jfrog.io/docker:1.0"
+                        //sh "docker rm -f \$(docker ps  -a -q --filter ancestor=sandy1791994/docwarimage:1.0)"
+                        sh "docker run -d -p 8050:8080 --name docker1 lohith2022.jfrog.io/docker:1.0"
+                  }
             }
-        }  
-        stage('build image') {
-            steps {
-                sh 'docker build -t lohith2022.jfrog.io/jfrog-local/dock:1.0 .'
-             }
-        }
-    }
-}
+      }
+      }
