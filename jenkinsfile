@@ -4,7 +4,7 @@ pipeline{
       stage('check out'){
                   steps{
                   sh "rm -rf hello-world-war"
-                  sh "git clone https://github.com/Sagar1895/hello-world-war.git
+                  sh "git clone https://github.com/arunhs07/hello-world-war.git"
                   }
                   }
       stage('build'){
@@ -12,22 +12,22 @@ pipeline{
       sh "pwd"
       sh "ls"
       sh "cd hello-world-war"
-      sh "docker build -t sagar8123onkar/sagarnewrepo:1.0 ."
+      sh "docker build -t arunhs07/arunnewfile:1.0 ."
       }
       }
        stage('publish'){
                   steps{
-                        sh "docker login -u sagar8123onkar -p Sagaronkar@96"
-                        sh "docker push sagar8123onkar/sagarnewrepo:1.0"
+                        sh "docker login -u arunhs07 -p 9845682619@Aru"
+                        sh "docker push arunhs07/arunnewfile:1.0"
                   }
             }
             stage('deploy'){
                   agent { label 'java' }
                   steps{
-                        sh "docker login -u sagar8123onkar -p Sagaronkar@96"
-                        sh "docker pull sagar8123onkar/sagarnewrepo:1.0"
-                        sh "docker rm -f trail1"
-                        sh "docker run -d -p 8085:8080 --name trail1 sagar8123onkar/sagarnewrepo:1.0"
+                        sh "docker login -u arunhs07 -p 9845682619@Aru"
+                        sh "docker pull arunhs07/arunnewfile:1.0"
+                        //sh "docker rm -f trail1"
+                        sh "docker run -d -p 8085:8080 --name trail1 arunhs07/arunnewfile:1.0"
                   }
             }
       }
