@@ -25,6 +25,7 @@ pipeline{
                   agent { label 'slave2' }
                   steps{
                         //sh "docker login -u lohith1994 -p Lohith@1994"
+                        //not necessary as it'll refer to docker hub is (default) & repo is public
                         sh "docker pull lohith1994/dockerrepo:1.0"
                         sh "docker rm -f docker1"
                         sh "docker run -d -p 8040:8080 --name docker1 lohith1994/dockerrepo:1.0"
