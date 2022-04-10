@@ -1,5 +1,5 @@
 pipeline{
-      agent { label 'java' }
+      agent { label 'javanode1' }
       stages{
       stage('check out'){
                   steps{
@@ -22,7 +22,7 @@ pipeline{
                   }
             }
             stage('deploy'){
-                  agent { label 'java' }
+                  agent { label 'javanode2' }
                   steps{
                         sh "docker login -u arunhs07 -p 9845682619@Aru"
                         sh "docker pull arunhs07/arunnewfile:1.0"
