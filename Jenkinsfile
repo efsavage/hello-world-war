@@ -13,7 +13,7 @@ pipeline {
         }  
         stage('build image') {
             steps {
-                sh 'docker build -t lohith2022.jfrog.io/jfrog-local/dock:1.0'
+                sh 'docker build -t lohith2022.jfrog.io/jfrog-local/dock:1.0 .'
              }
         }
     }
