@@ -1,16 +1,12 @@
 pipeline {
-    agent any
+    agent {
+        docker { image 'node:16.13.1-alpine' }
+    }
     stages {
-        [ tool name: 'docker', type: 'dockerTool' ]
-        stage('Build') {
-            agent {
-                docker {
-                    image 'gradle:6.7-jdk11'
-                                        reuseNode true
-                }
-            }
+        stage('Test') {
             steps {
-                sh 'gradle --version'
+                tool name: 'docker', type: 'dockerTool'
+                sh 'node --version'
             }
         }
     }
