@@ -2,6 +2,7 @@ pipeline{
       agent { label 'last1' }
       stages{
       stage('check out'){
+            //used to checkout from git
                   steps{
                   sh "rm -rf hello-world-war"
                   sh "git clone https://github.com/Lohras/hello-world-war.git"
