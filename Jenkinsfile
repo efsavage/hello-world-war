@@ -1,11 +1,15 @@
 pipeline {
-    agent {
-        docker { image 'build:1.0' }
-    }
+    agent any
     stages {
-        stage('Test') {
+        stage('Build') {
+            agent {
+                docker {
+                    image 'gradle:6.7-jdk11'
+                                        reuseNode true
+                }
+            }
             steps {
-                sh 'maven --version'
+                sh 'gradle --version'
             }
         }
     }
