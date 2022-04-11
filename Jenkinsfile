@@ -1,11 +1,11 @@
 pipeline {
     agent {
-        docker { image 'build:1.0' }
+        docker { image 'node:16.13.1-alpine' }
     }
     stages {
         stage('Test') {
             steps {
-                sh 'mkdir -p SLAVE'
+                sh 'node --version'
             }
         }
     }
