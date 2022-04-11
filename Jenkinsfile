@@ -11,7 +11,7 @@ pipeline {
     }
         stage('Test') {
             steps {
-                tool name: 'docker', type: 'dockerTool'
+             
                 sh 'node --version'
             }
         }
