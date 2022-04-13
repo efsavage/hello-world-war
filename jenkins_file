@@ -25,7 +25,7 @@ pipeline {
 	}
 	environment {
 		pom = readMavenPom file: 'pom.xml'
-		version = pom.version
+		version = $pom.version
     }
 	stages {
 //		stage('git_checkout') {
