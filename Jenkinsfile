@@ -5,7 +5,7 @@ pipeline {
         stage('checkout') {
 agent { label 'java' } 
             steps {
-                sh 'https://github.com/Sahanamahadev/hello-world-war.git'
+                sh 'git clone https://github.com/Sahanamahadev/hello-world-war.git'
             }
         }
 
