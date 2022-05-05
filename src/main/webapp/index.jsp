@@ -3,7 +3,7 @@
 <title>Hello DevOps people! from Atos</title>
 </head>
 <body>
-	<p><h1>Hello DevOps people this is Dec 21</h1></p>
+	<p><h1>Hello DevOps people this is L&D program</h1></p>
 	<p>This is DevOps class</p> 
 	<b><h2>CI/CD</h2></b>
 	<p>
