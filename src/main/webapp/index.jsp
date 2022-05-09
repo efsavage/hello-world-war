@@ -13,4 +13,5 @@
 	<p>Continuous delivery is a software development methodology where the release process is automated....</p> 
 	<p>Continuous integration is a software development practice where members of a team use a version control system and frequently integrate their work to the same location, such as a main branch.</p>
 	<p><h2>This is testing line for CICD</p><h2>
+	<p>Test 2</p>
 </body>
