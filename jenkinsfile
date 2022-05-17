@@ -1,0 +1,75 @@
+def pomv
+pipeline {
+	agent any
+	tools {
+		maven 'maven'
+	}
+	stages {
+		stage ('Git-Fetch') {
+			steps {
+				git 'git@github.com:mohancggrl/hello-world-war.git'
+			}
+		}
+		stage ('build') {
+			steps {
+				sh 'mvn clean package'
+			}
+		}
+		stage ('upload_to Nexus') {
+			steps {
+				script {
+					def pom = readMavenPom file: 'pom.xml'
+					pomv = "${pom.version}"
+					nexusArtifactUploader artifacts: [
+					[
+						artifactId: 'hello-world-war',
+						classifier: '', 
+						file: "target/hello-world-war-${pom.version}.war", 
+						type: 'war'
+					]
+				], 
+				credentialsId: 'Nexus3', 
+				groupId: 'com.efsavage', 
+				nexusUrl: '172.31.8.254:8081', 
+				nexusVersion: 'nexus3', 
+				protocol: 'http', 
+				repository: 'mouni', 
+				version: "${pom.version}"
+				}
+			}
+		}
+		stage ('deploy') {
+			steps {
+				git 'git@github.com:mohancggrl/deploy.git'
+				sshPublisher (publishers: [
+					sshPublisherDesc
+						(
+							configName: 'ansible', 
+							transfers: 
+							[
+								sshTransfer
+								(
+									cleanRemote: false, 
+									excludes: '', 
+									execCommand: "ansible-playbook -i /opt/opt/hosts /opt/opt/deploy.yml --extra-var NODE=web --extra-var war_version=${pomv}",
+									execTimeout: 120000, 
+									flatten: false, 
+									makeEmptyDirs: false, 
+									noDefaultExcludes: false, 
+									patternSeparator: '[, ]+', 
+									remoteDirectory: '/opt/', 
+									remoteDirectorySDF: false, 
+									removePrefix: '', 
+									sourceFiles: '*/'
+								)
+							], 
+							usePromotionTimestamp: false, 
+							useWorkspaceInPromotion: false, 
+							verbose: false
+						)
+					]
+				)
+			}
+		}
+	}
+}
