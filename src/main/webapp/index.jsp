@@ -16,4 +16,8 @@
 	<p>Test 2</p>
 	<p><h2>This is testing line for DevSecOps</p><h2>
 	<p>Test 3</p>
+	<p>
+		Today is
+		<%= new java.util.Date() %></p>
+	<p>Continuous integration and continuous delivery to Nexus artifact repository</p>
 </body>
