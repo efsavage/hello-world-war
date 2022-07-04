@@ -1,20 +1,19 @@
 pipeline {
-    agent any
+    agent { label 'slave4' }
     stages {
-        stage('clone stage') {
+        stage('clone step') {
             steps {
-                sh 'rm-rf hello-world-war'
-                sh 'git clone https://github.com/venkibiligere/hello-world-war.git'
+                sh 'https://github.com/venkibiligere/hello-world-war.git'
             }
         }
- stage('build stage') {
+  stage('Build') {
             steps {
                 sh 'mvn package'
             }
-        }
-  stage('deploy stage') {
+  }
+      stage('Deploy step') {
             steps {
-                sh 'sudo /workspace/helloworldwar1/target/hello-world-war-1.0.0.war /opt/apache-tomcat-9.0.64/webapps'
+                sh 'sudo cp /home/slave4/workspace/helloworldwar4/target/hello-world-war-1.0.0.war /opt/apache-tomcat-9.0.64/webapps/'      
             }
         }
     }
