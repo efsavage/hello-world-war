@@ -2,7 +2,7 @@
 <head>
 <title>Hello World!</title>
 </head>
-<body>
+
 	<h1>Hello World!</h1>
 	We are learning Deployment on 7-july
 	<p>
@@ -11,4 +11,5 @@
 	<p>
 		You are coming from 
 		<%= request.getRemoteAddr()  %></p>
+</body>
 
