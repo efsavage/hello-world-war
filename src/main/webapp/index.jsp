@@ -4,7 +4,7 @@
 </head>
 <body>
 	<h1>Hello World!</h1>
-	<h1>We are learning Deployment on 7-july
+	We are learning Deployment on 7-july
 	<p>
 		It is now
 		<%= new java.util.Date() %></p>
