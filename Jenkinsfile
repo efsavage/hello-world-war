@@ -16,7 +16,7 @@ pipeline {
         }
         stage('deploy') {
             steps {
-                sh 'sudo cp -r /var/lib/jenkins/workspace/Multipipeline_pipeline2/hello-world-war/target/hello-world-war-1.0.0 /opt/apache-tomcat-9.0.64/webapps/'
+                sh 'sudo -S cp -r /var/lib/jenkins/workspace/Multipipeline_pipeline2/hello-world-war/target/hello-world-war-1.0.0 /opt/apache-tomcat-9.0.64/webapps/'
                 sh 'sudo  sh /opt/apache-tomcat-9.0.64/bin/shutdown.sh'
                 sh 'sudo  sh /opt/apache-tomcat-9.0.64/bin/startup.sh'
                 sh 'echo "Successfully deployed"'
