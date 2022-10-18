@@ -18,7 +18,7 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                echo 'Deploying....'
+                sh "cp/home/slave3/workspace/world2/target/hello-world-war-1.0.0.war /opt/tomcat/webapps"
             }
         }
     }
