@@ -1,20 +1,29 @@
 pipeline {
-    agent any
+    agent {label 'slave3'}
 
     stages {
         stage('checkout') {
             steps {
+                sh "pwd"
+                sh "rm -rf hello-world-war"
                 sh "git clone https://github.com/mhm1nh3/hello-world-war.git"
             }
         }
-        stage('Test') {
+        stage('build') {
             steps {
-                echo 'Testing..'
+                sh "ls"
+                sh "cd hello-world-war"
+                sh "mvn clean package"
             }
         }
         stage('Deploy') {
             steps {
-                echo 'Deploying....'
+                echo "Deploy"
+            }
+        }
+        stage('Monitor'){
+            steps{
+                echo "Monitor"
             }
         }
     }
