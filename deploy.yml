@@ -13,11 +13,6 @@
         dest: "/tmp/hello-world-war-1.0.0.war"
         mode: '0644'
 
-    - name: Install java
-      yum:
-        name: java-1.8.0-openjdk
-        state: present
-
     - name: download tomcat server packages
       get_url:
         url: https://dlcdn.apache.org/tomcat/tomcat-10/v10.0.27/bin/apache-tomcat-10.0.27.tar.gz
