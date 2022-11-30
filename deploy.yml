@@ -7,7 +7,7 @@
         artifact_id: hello-world-war
         extension: war
         version: 1.0.0
-        repository_url: "http://52.66.196.160:8081/repository/hello-release/:"
+        repository_url: "http://52.66.196.160:8081/repository/hello-release/"
         username: admin
         password: 12345
         dest: "/tmp/hello-world-war-1.0.0.war"
