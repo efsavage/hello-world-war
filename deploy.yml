@@ -1,0 +1,49 @@
+---
+- hosts: all
+  tasks:
+    - name: "Download war file"
+      maven_artifact:
+        group_id: com.efsavage
+        artifact_id: hello-world-war
+        extension: war
+        version: 1.0.0
+        repository_url: "http://52.66.196.160:8081/repository/hello-release/:"
+        username: admin
+        password: 12345
+        dest: "/tmp/hello-world-war-1.0.0.war"
+        mode: '0644'
+
+    - name: Install java
+      yum:
+        name: java-1.8.0-openjdk
+        state: present
+
+    - name: download tomcat server packages
+      get_url:
+        url: https://dlcdn.apache.org/tomcat/tomcat-10/v10.0.27/bin/apache-tomcat-10.0.27.tar.gz
+        dest: /usr/local
+
+    - name: extract tomcat packages
+      unarchive:
+        src: /usr/local/apache-tomcat-10.0.27.tar.gz
+        dest: /usr/local
+        remote_src: yes
+
+    - name: Copy the war file
+      copy:
+        src: /tmp/hello-world-war-1.0.0.war
+        dest: /usr/local/apache-tomcat-10.0.27/webapps/
+        remote_src: yes
+        
+    - name: changing tomcat port number
+      template:
+        src: /var/lib/jenkins/workspace/JavaTestJob/server.xml.j2
+        dest: /usr/local/apache-tomcat-10.0.27/conf/server.xml
+        mode: '0777'
+
+    - name: Stop tomcat services
+      shell: /usr/local/apache-tomcat-10.0.27/bin/shutdown.sh
+   
+
+    - name: Start Tomcat
+      shell: nohup /usr/local/apache-tomcat-10.0.27/bin/startup.sh
