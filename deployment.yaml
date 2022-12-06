@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sampledemo-deployment
+  labels:
+    app: sampledemo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sampledemo
+  template:
+    metadata:
+      labels:
+        app: sampledemo 
+    spec:
+      containers:
+      - name: sampledemo
+        image: robinksk/sample-demo:1
+        ports:
+        - containerPort: 8080
+        
+        
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: sampledemo-service
+spec:
+  selector:
+    app: sampledemo 
+  type: LoadBalancer
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 8080
