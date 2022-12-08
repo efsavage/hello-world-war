@@ -1,2 +1,2 @@
 #!/bin/bash
-sed "s/tagVersion/$1/g" Deployment.yml > Deploy-pod.yml
+sed "s/tagVersion/$1/g" deployment.yml > Deploy-pod.yml
