@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: sampledemo
-        image: robinksk/sample-eks:1
+        image: robinksk/sample-eks:tagVersion
         ports:
         - containerPort: 9090
         
