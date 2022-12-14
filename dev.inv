@@ -1,1 +1,1 @@
-172.31.41.89  ansible_python_interpreter="/usr/bin/python3"
+172.31.0.199  ansible_python_interpreter="/usr/bin/python3" ansible_user=ec2-user
