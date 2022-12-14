@@ -1,0 +1,25 @@
+def readpom
+pipeline{
+
+agent any
+tools{
+maven 'maven3.8.6'
+ }
+stages{
+    stage('checkout'){
+      steps{
+    git 'https://github.com/devillierscbe/hello-world-war.git'
+       }
+    }
+    stage('Pull & Deploy'){
+        steps{
+            script{
+               readpom = readMavenPom file: 'pom.xml';
+                def pomversion = readpom.version;
+                echo "${pomversion}"
+                ansiblePlaybook credentialsId: 'ansibledemo1', disableHostKeyChecking: true, installation: 'ansible2', inventory: 'dev.inv', playbook: 'roles.yml', extras: "-e version=${pomversion}"
+            }
+        }
+    }
+  }
+}
