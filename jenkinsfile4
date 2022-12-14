@@ -1,0 +1,72 @@
+def readpom
+pipeline{
+
+agent any
+tools{
+maven 'maven3.8.6'
+ }
+stages{
+    stage('checkout'){
+      steps{
+    git 'https://github.com/devillierscbe/hello-world-war.git'
+       }
+    }
+    stage('MavenBuild'){
+      steps{
+        sh "mvn clean package"
+       }
+    }
+    stage('CodeAnalysis'){
+        steps{
+            script{
+             withSonarQubeEnv(installationName: 'sonarserver'){
+            sh "mvn clean sonar:sonar"     
+             }
+            }
+        }
+        
+    }
+    stage('QualityGate'){
+        steps{
+            script{
+                timeout(time: 2, unit: 'MINUTES'){
+                 waitForQualityGate abortPipeline: true
+                }
+            }
+        }
+    }
+    
+     stage('DockerBuild'){
+      steps{
+          script{
+           readpom = readMavenPom file: 'pom.xml';
+            def pomversion = readpom.version;
+            sh "docker build -t robinksk/sample-eks:${pomversion} ."
+      }
+     }
+   }
+   stage('DockerPush'){
+       steps{
+           script{
+            readpom = readMavenPom file: 'pom.xml';
+             def pomversion = readpom.version;
+             withCredentials([string(credentialsId: 'DOCKER_HUB_CREDENTIALS', variable: 'DOCKER_HUB_CREDENTIALS')]) {
+             sh "docker login -u robinksk -p ${DOCKER_HUB_CREDENTIALS}"
+          }
+             sh "docker push robinksk/sample-eks:${pomversion}"
+       }
+     }
+   }
+    stage('Deploy to Kubernetes'){
+        steps{
+        script{
+         readpom = readMavenPom file: 'pom.xml';
+          def pomversion = readpom.version;
+        sshagent(['EKS_demo1']) {
+         sh "ssh ubuntu@13.233.201.17 helm upgrade -f ./mychart/values.yaml --kube-context=eks-demo --namespace default --install mychart --set image.repository=robinksk/sample-eks,image.tag=${pomversion}, ./mychart/ --debug --wait"
+          }
+        }
+      }
+     } 
+   } 
+ }
