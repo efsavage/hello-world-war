@@ -1,3 +1,4 @@
+def readpom
 pipeline{
 
 agent any
@@ -18,21 +19,35 @@ stages{
     }
     stage('DockerBuild'){
       steps{
-          sh "docker build -t robinksk/sample-eks:1 ."
+       script{
+       readpom = readMavenPom file: 'pom.xml';
+        def pomversion = readpom.version;
+        sh "docker build -t robinksk/sample-eks:${pomversion} ."
       }
+     } 
    }
    stage('DockerPush'){
        steps{
+        script{
+        readpom = readMavenPom file: 'pom.xml';
+         def pomversion = readpom.version;
         withCredentials([string(credentialsId: 'DOCKER_HUB_CREDENTIALS', variable: 'DOCKER_HUB_CREDENTIALS')]) {
           sh "docker login -u robinksk -p ${DOCKER_HUB_CREDENTIALS}"
      }
-         sh "docker push robinksk/sample-eks:1"
+        sh "docker push robinksk/sample-eks:${pomversion}"
        }
+      }
    }
     stage('Deploy to Kubernetes'){
         steps{
-        sshagent(['EKS_demo1']) {
-         sh "scp -o StrictHostKeyChecking=no deployment.yml ubuntu@13.233.201.17:/home/ubuntu/" 
+         script{
+         readpom = readMavenPom file: 'pom.xml';
+          def pomversion = readpom.version;
+          echo "${pomversion}"
+          sh "chmod +x changeTag.sh"
+          sh "./changeTag.sh ${pomversion}"
+         sshagent(['EKS_demo1']) {
+         sh "scp -o StrictHostKeyChecking=no Deploy-pod.yml ubuntu@13.233.201.17:/home/ubuntu/" 
          script{
                             
                             try{
@@ -41,6 +56,7 @@ stages{
                                  sh 'ssh ubuntu@13.233.201.17 kubectl create -f .'
                              }
           }
+         }
         }
       }
    }
