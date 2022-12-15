@@ -1,0 +1,5 @@
+---
+# tasks file for java
+
+- name: Execute the command in remote shell; stdout goes to the specified file on the remote
+  ansible.builtin.shell: amazon-linux-extras install java-openjdk11 -y
