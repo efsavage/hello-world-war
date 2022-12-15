@@ -19,9 +19,6 @@
     dest: "/tmp/hello-world-war-1.0.0.war"
     mode: '0644'
 
-- name: Execute the command in remote shell; stdout goes to the specified file on the remote
-  ansible.builtin.shell: amazon-linux-extras install java-openjdk11 -y
-
 - name: download tomcat server packages
   get_url:
     url: https://dlcdn.apache.org/tomcat/tomcat-10/v10.0.27/bin/apache-tomcat-10.0.27.tar.gz
@@ -44,9 +41,6 @@
     src: /var/lib/jenkins/workspace/AnsibleDemo/server.xml.j2
     dest: /usr/local/apache-tomcat-10.0.27/conf/server.xml
     mode: '0777'
-
-- name: Stop tomcat services
-  shell: /usr/local/apache-tomcat-10.0.27/bin/shutdown.sh
-
-- name: Start Tomcat
-  shell: nohup /usr/local/apache-tomcat-10.0.27/bin/startup.sh
+    
+  notify: restart tomcat
+  
