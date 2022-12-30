@@ -1,0 +1,153 @@
+---
+- name: create vpc
+   hosts: localhost
+   gather_facts: false
+   vars:
+    instance_type: "t2.micro"
+    key: "Demo"
+    OS_Names: "EC2-Ansible"
+    ansible_python_interpreter: /usr/bin/python3
+    title: "Demo"
+    vpc_name: "{{ title }} VPC"
+    igw_name: "{{ title }} Igw"
+    subnet_name: "{{ title }} Subnet"
+    route_table_name: "{{ title }} Route Table"
+    security_group_name: "{{ title }} SG"
+    vpc_cidr_block: '11.0.0.0/16'
+    subnet_cidr_block: '11.0.1.0/24'
+    destination_cidr_block: '0.0.0.0/0'
+    port22_cidr_block: '0.0.0.0/0'
+    region: "ap-south-1"
+    zone: "ap-south-1a"
+    os_owner: "309956199498"
+    os_name: "RHEL-9.1*"
+
+ 
+
+   tasks:
+
+ 
+
+      - name: Create VPC over AWS Cloud
+        ec2_vpc_net:
+          name: "{{ vpc_name }}"
+          cidr_block: "{{ vpc_cidr_block }}"
+          region: "{{ region }}"
+          # enable dns support
+          dns_support: yes
+          # enable dns hostnames
+          dns_hostnames: yes
+          tenancy: default
+          state: present
+        register: ec2_vpc_net_result
+
+ 
+
+      - name: Create Internet Gateway for VPC
+        ec2_vpc_igw:
+           vpc_id: "{{ ec2_vpc_net_result.vpc.id }}"
+           region: "{{ region }}"
+           state: present
+           tags:
+             Name: "{{ igw_name }}"
+        register: igw_result
+
+ 
+
+      - name: Create VPC Subnet
+        ec2_vpc_subnet:
+           vpc_id: "{{ ec2_vpc_net_result.vpc.id }}"
+           region: "{{ region }}"
+           az: "{{ zone }}"      # az is the availability zone
+           state: present
+           cidr: "{{ subnet_cidr_block }}"
+           # enable public ip
+           map_public: yes
+           resource_tags:
+             Name: "{{ subnet_name }}"
+        register: subnet_result
+
+ 
+
+      - name: Create VPC Public Subnet Route Table
+        ec2_vpc_route_table:
+           vpc_id: "{{ ec2_vpc_net_result.vpc.id }}"
+           region: "{{ region }}"
+           state: present
+           tags:
+             Name: "{{ route_table_name }}"
+           subnets: [ "{{ subnet_result.subnet.id }}" ]
+           # create routes
+           routes:
+             - dest: "{{ destination_cidr_block }}"
+               gateway_id: "{{ igw_result.gateway_id }}"
+        register: public_route_table
+
+ 
+
+      - name: Create Security Group
+        ec2_group:
+           vpc_id: "{{ ec2_vpc_net_result.vpc.id }}"
+           region: "{{ region }}"
+           state: present
+           name: "{{ security_group_name }}"
+           description: "{{ security_group_name }}"
+           tags:
+             Name: "{{ security_group_name  }}"
+           rules:
+           - proto: all
+             cidr_ip: "{{ port22_cidr_block }}"
+             rule_desc: allow all traffic
+        register: security_group_results
+
+ 
+
+      - name: Create a new EC2 key
+        ec2_key:
+           name: Demo
+           region: ap-south-1
+        register: ec2_key_result
+
+ 
+
+      - name: Save private key
+        copy: content="{{ ec2_key_result.key.private_key }}" dest="./Demo.pem" mode=0600
+        when: ec2_key_result.changed
+
+ 
+
+      - name: find ami instance-id for RHEL8
+        ec2_ami_info:
+           owner: "{{ os_owner}}"
+           region: "{{ region }}"
+           filters:
+            name: "{{ os_name }}"
+        register: amis
+
+ 
+
+      - name:  find out and print latest ami image_id
+        vars:
+          lst_ami: >
+            {{ amis.images | selectattr('name', 'defined') | sort(attribute='creation_date') | last }}
+        debug:
+          msg: "{{lst_ami.image_id}}"
+        register: latest_ami
+
+ 
+
+
+      - name: launching AWS instance using Ansible
+        amazon.aws.ec2_instance:
+           name: DemoInstance
+           key_name: "{{ key }}"
+           instance_type: "{{ instance_type }}"
+           image_id: "{{latest_ami.msg}}"
+           region: "{{ region }}"
+           security_groups:
+              - "{{ security_group_results.group_id }}"
+           count: 1
+           wait: yes
+           vpc_subnet_id: "{{ subnet_result.subnet.id }}"
+           network:
+              assign_public_ip: true
