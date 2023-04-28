@@ -31,6 +31,7 @@ pipeline {
             steps {
                 echo 'This is Deploy stage (TBD)'
                 sh 'echo Build ${BUILD_NUMBER}'
+                deploy adapters: [tomcat9(credentialsId: 'Tomcat_ID', path: '', url: 'http://15.206.151.178:8090/')], contextPath: 'HelloWorld_Pipeline', war: '**/*.war'
             }
         }
     }
