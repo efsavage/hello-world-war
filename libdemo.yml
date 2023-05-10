@@ -1,0 +1,8 @@
+---
+- hosts: tomcat
+  become: True
+  tasks:
+      - name: Delpoy into Tomcat
+        copy: 
+           src: /var/lib/jenkins/workspace/shared-lib-demo/target/hello-world-war-1.0.0.war
+           dest: /opt/apache-tomcat-9.0.74/webapps/hello-world-war-1.0.0.war
