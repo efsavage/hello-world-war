@@ -1,4 +1,4 @@
-FROM tomcat:8
+FROM tomcat:8.1
 
 RUN sed -i 's/port="8080"/port="9090"/' /usr/local/tomcat/conf/server.xml
 
