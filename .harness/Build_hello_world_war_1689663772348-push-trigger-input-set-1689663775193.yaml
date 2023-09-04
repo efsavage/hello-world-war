@@ -1,0 +1,14 @@
+inputSet:
+  name: Build_hello_world_war_1689663772348-push-trigger-input-set
+  identifier: Build_hello_world_war_1689663772348pushtriggerinputset
+  orgIdentifier: default
+  projectIdentifier: default_project
+  pipeline:
+    identifier: Build_hello_world_war_1689663772348
+    properties:
+      ci:
+        codebase:
+          build:
+            type: branch
+            spec:
+              branch: <+trigger.branch>
