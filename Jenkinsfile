@@ -7,7 +7,7 @@ pipeline{
         sh 'git clone https://github.com/poojaspdev/hello-world-war.git
     }
     }
-    stage ('build step'){
+    stage ('build'){
       steps{
         sh 'mvn package'
       }
