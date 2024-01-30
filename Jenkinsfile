@@ -3,8 +3,14 @@ pipeline{
   stages{
     stage ('clone step'){
       steps{
-        sh 'git clone https://github.com/poojaspdev/hello-world-war.git'
-      }
+        sh 'rm -rf hello-world-war'
+        sh 'git clone https://github.com/poojaspdev/hello-world-war.git
     }
+    }
+    stage ('build step'){
+      steps{
+        sh 'mvn package'
+      }
   }
+}
 }
